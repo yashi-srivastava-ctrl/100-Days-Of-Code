@@ -1,0 +1,60 @@
+Q52: Write a program to print the following pattern:
+
+*
+
+*
+*
+*
+
+*
+*
+*
+*
+*
+
+*
+*
+*
+
+*
+
+
+
+/*
+Sample Test Cases:
+Input 1:
+
+Output 1:
+Pattern with stars spaced irregularly as shown.
+
+*/
+
+#include <stdio.h>
+
+int main() {
+    // Print first group (1 star)
+    printf("*\n\n");
+    
+    // Print second group (4 stars)
+    for (int i = 0; i < 4; i++) {
+        printf("*\n");
+    }
+    printf("\n");
+
+    // Print third group (5 stars)
+    for (int i = 0; i < 5; i++) {
+        printf("*\n");
+    }
+    printf("\n");
+
+    // Print fourth group (3 stars)
+    for (int i = 0; i < 3; i++) {
+        printf("*\n");
+    }
+    printf("\n");
+
+    // Print last group (1 star)
+    printf("*\n");
+
+    return 0;
+}
