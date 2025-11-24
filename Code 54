@@ -1,0 +1,54 @@
+Q54: Write a program to print the following pattern:
+
+   *
+  ***
+ *****
+*******
+ *****
+  ***
+   *
+
+
+/*
+Sample Test Cases:
+Input 1:
+
+Output 1:
+Pattern with layers of stars as shown.
+
+*/
+
+#include <stdio.h>
+
+int main() {
+    int rows = 7; // Total rows in the pattern
+    int mid = (rows + 1) / 2;
+
+    // Upper part of diamond including middle row
+    for (int i = 1; i <= mid; i++) {
+        // Print leading spaces
+        for (int space = 1; space <= mid - i; space++) {
+            printf(" ");
+        }
+        // Print stars
+        for (int star = 1; star <= 2 * i - 1; star++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    // Lower part of diamond
+    for (int i = mid - 1; i >= 1; i--) {
+        // Print leading spaces
+        for (int space = 1; space <= mid - i; space++) {
+            printf(" ");
+        }
+        // Print stars
+        for (int star = 1; star <= 2 * i - 1; star++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
