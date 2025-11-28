@@ -1,0 +1,63 @@
+Q147: Store employee data in a binary file using fwrite() and read using fread().
+
+/*
+Sample Test Cases:
+Input 1:
+Employee details entered and stored in file.
+Output 1:
+Displays employee data read from file.
+
+*/
+
+#include <stdio.h>
+
+struct Employee {
+    char name[50];
+    int id;
+    int salary;
+};
+
+int main() {
+    struct Employee emp;
+
+    // Input employee data
+    printf("Enter employee details:\n");
+    printf("Name: ");
+    fgets(emp.name, sizeof(emp.name), stdin);
+    emp.name[strcspn(emp.name, "\n")] = '\0';
+    
+    printf("ID: ");
+    scanf("%d", &emp.id);
+    
+    printf("Salary: ");
+    scanf("%d", &emp.salary);
+
+    // Write to binary file
+    FILE *writeFile = fopen("employees.dat", "wb");
+    if (writeFile == NULL) {
+        printf("Error opening file for writing.\n");
+        return 1;
+    }
+
+    fwrite(&emp, sizeof(struct Employee), 1, writeFile);
+    fclose(writeFile);
+    printf("Employee data written to employees.dat\n");
+
+    // Read from binary file
+    struct Employee readEmp;
+    FILE *readFile = fopen("employees.dat", "rb");
+    if (readFile == NULL) {
+        printf("Error opening file for reading.\n");
+        return 1;
+    }
+
+    fread(&readEmp, sizeof(struct Employee), 1, readFile);
+    fclose(readFile);
+
+    // Display read data
+    printf("\nData read from file:\n");
+    printf("Name: %s | ID: %d | Salary: %d\n", 
+           readEmp.name, readEmp.id, readEmp.salary);
+
+    return 0;
+}
