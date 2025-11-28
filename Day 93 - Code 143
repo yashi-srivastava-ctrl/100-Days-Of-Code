@@ -1,0 +1,52 @@
+Q143: Find and print the student with the highest marks.
+
+/*
+Sample Test Cases:
+Input 1:
+3 students: Ravi 101 95, Sita 102 85, Aman 103 88
+Output 1:
+Topper: Ravi (Marks: 95)
+
+*/
+
+#include <stdio.h>
+
+struct Student {
+    char name[50];
+    int roll_no;
+    int marks;
+};
+
+int main() {
+    int n = 3;  // Number of students
+    struct Student students[3];
+
+    // Input for students
+    for (int i = 0; i < n; i++) {
+        printf("Enter details for student %d:\n", i + 1);
+        printf("Name: ");
+        fgets(students[i].name, sizeof(students[i].name), stdin);
+        students[i].name[strcspn(students[i].name, "\n")] = '\0';
+        
+        printf("Roll No: ");
+        scanf("%d", &students[i].roll_no);
+        
+        printf("Marks: ");
+        scanf("%d", &students[i].marks);
+        getchar(); // Clear input buffer
+    }
+
+    // Find student with highest marks
+    int maxIndex = 0;
+    for (int i = 1; i < n; i++) {
+        if (students[i].marks > students[maxIndex].marks) {
+            maxIndex = i;
+        }
+    }
+
+    // Print topper
+    printf("\nTopper: %s (Marks: %d)\n", 
+           students[maxIndex].name, students[maxIndex].marks);
+
+    return 0;
+}
